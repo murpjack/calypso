@@ -16,13 +16,7 @@ const getTempCode = () => {
 // storage API returns a string or an empty object, handle outcome
 // If value is an object get a tempCode
 const checkTempCode = data => {
-  return Future((rej, res) => {
-    if (typeof data === "string") {
-      return rej();
-    }
-    return res("Not logged in");
-  });
-};
+  return Future((rej, res) => typeof data === "string" ? rej() : res("Not logged in"))
 
 const tabOptions = { active: true, lastFocusedWindow: true };
 const getTabs = () => Future((rej, res) => chrome.tabs.query(tabOptions, res));
